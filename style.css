@@ -1,0 +1,56 @@
+* {
+  background-color: lightblue;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+  height: 500px;
+  width: 400px;
+  border: 4px solid black;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+}
+
+.display {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 8px;
+  border: 2px solid black;
+  padding: 8px;
+  background-color: lightgray;
+}
+
+.buttons {
+  border: 2px solid black;
+}
+
+.row {
+  display: flex;
+  background-color: black;
+  flex: 1;
+}
+
+.button,
+.buttonOperator {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.button {
+  background-color: lightgrey;
+}
+
+.buttonOperator {
+  background-color: lightsalmon;
+}
+
+.buttonAC,
+.buttonPlusMinus,
+.buttonDegree {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: lightgreen;
+}
