@@ -3,6 +3,12 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   height: 500px;
   width: 400px;
@@ -19,38 +25,53 @@
   border: 2px solid black;
   padding: 8px;
   background-color: lightgray;
+  text-align: end;
 }
 
 .buttons {
   border: 2px solid black;
-}
-
-.row {
   display: flex;
+  flex-wrap: wrap;
+  flex: auto;
   background-color: black;
-  flex: 1;
-}
-
-.button,
-.buttonOperator {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 8px;
+  justify-content: center;
 }
 
 .button {
+  border: 1px solid black;
+  border-radius: 5px;
   background-color: lightgrey;
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 20%;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
 }
 
-.buttonOperator {
+.button:hover {
+  filter: brightness(150%);
+}
+
+.button:active {
+  filter: brightness(50%);
+}
+
+.button.Operator {
   background-color: lightsalmon;
 }
 
-.buttonAC,
-.buttonPlusMinus,
-.buttonDegree {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 8px;
+.button.AC,
+.button.PlusMinus,
+.button.Degree {
   background-color: lightgreen;
+}
+
+.button.Zero {
+  flex-grow: 50;
 }
