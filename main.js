@@ -6,13 +6,45 @@ let operator = ''
 let number = ''
 let result = '0'
 
+//operator functions
+function add(a, b){
+  return a + b
+}
+
+function subtract(a, b){
+  return a - b
+}
+
+function multiply (a, b){
+  return a * b
+}
+
+function divide (a, b) {
+  if (b==0)
+    return 'error'
+  return Math.round ((a / b) * 100000000) / 100000000
+}
+
+function percent(a, b) {
+  if (!b)
+    return a / 100
+  return a * b /100
+  
+}
+
 const display = document.querySelector('.display')
 
 const btns = document.querySelectorAll('.num')
 btns.forEach((btn) => {
   btn.addEventListener('click', (e) => {
-    number += e.target.innerText
-    display.innerText = number
+    number = e.target.innerText
+    if (!operator) {
+      a += number
+      display.innerText = a
+    } else {
+      b += number
+      display.innerText = b
+    } 
   })
 })
 
@@ -37,3 +69,5 @@ equal.addEventListener('click', (e) => {
   result = 'e'
   display.innerText = result
 })
+
+
