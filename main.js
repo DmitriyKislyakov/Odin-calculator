@@ -1,36 +1,33 @@
 let a = ''
-let numA = Number(a)
 let b = ''
-let numB = Number(b)
 let operator = ''
 let number = ''
 let result = '0'
 
 //operator functions
 function add(a, b){
-  return a + b
+  return Number(a) + Number(b)
 }
 
 function subtract(a, b){
-  return a - b
+  return Number(a) - Number(b)
 }
 
 function multiply (a, b){
-  return a * b
+  return Number(a) * Number(b)
 }
 
 function divide (a, b) {
-  if (b==0)
+  if (Number(b)==0)
     return 'error'
-  return Math.round ((a / b) * 100000000) / 100000000
+  return Math.round ((Number(a) / Number(b)) * 100000000) / 100000000
 }
 
-function percent(a, b) {
-  if (!b)
-    return a / 100
-  return a * b /100
-  
+function percent(a, b=1) {
+      console.log('a=', a, 'b=', b, '!b=', !!(!b))
+      return Number(a) * Number(b) /100 
 }
+
 
 const display = document.querySelector('.display')
 
@@ -45,6 +42,7 @@ btns.forEach((btn) => {
       b += number
       display.innerText = b
     } 
+    console.log('a=', a, 'b=', b, 'o=', operator)
   })
 })
 
@@ -53,6 +51,7 @@ operators.forEach((oper) => {
   oper.addEventListener('click', (e) => {
     operator = e.target.innerText
     display.innerText = operator
+    console.log('a=', a, 'b=', b, 'o=', operator)
   })
 })
 
@@ -61,13 +60,46 @@ ac.addEventListener('click', () => {
   a = b = operator = number = ''
   result = '0'
   display.innerText = result
+  console.log('a=', a, 'b=', b, 'o=', operator)
+})
+
+const dot = document.querySelector('.dot')
+dot.addEventListener('click', ()=>{
+  
 })
 
 const equal = document.querySelector('.equal')
-equal.addEventListener('click', (e) => {
-  console.log('=')
-  result = 'e'
+equal.addEventListener('click', () => {
+  switch (operator) {
+    case '+':
+      b != ''
+      ? (result = String(add(a, b)), console.log(result))
+      : (result = String(add (a, a)), console.log(result))
+      break
+    case '-':
+      b != ''
+      ? (result = String(subtract(a, b)), console.log(result))
+      : (result = String(subtract (a, a)), console.log(result))
+      break
+    case '*':
+      b != ''
+      ? (result = String(multiply(a, b)), console.log(result))
+      : (result = String(multiply (a, a)), console.log(result))
+      break
+    case '/':
+      b != ''
+      ? (result = String(divide(a, b)), console.log(result))
+      : (result = String(divide (a, a)), console.log(result))
+      break
+    case '%':
+      b != ''
+      ? (result = String(percent(a, b)), console.log(result))
+      : (result = String(percent (a)), console.log(result))
+      break
+  }
   display.innerText = result
+  a = result
+  console.log('a=', a, 'b=', b, 'o=', operator)
 })
 
 
