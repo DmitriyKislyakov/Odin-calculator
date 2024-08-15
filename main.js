@@ -5,29 +5,42 @@ let number = ''
 let result = '0'
 
 //operator functions
-function add(a, b){
-  return Number(a) + Number(b)
+function add(a, b) {
+  return Math.round((Number(a) + Number(b)) * 100000000) / 100000000
 }
 
-function subtract(a, b){
-  return Number(a) - Number(b)
+function subtract(a, b) {
+  return Math.round((Number(a) - Number(b)) * 100000000) / 100000000
 }
 
-function multiply (a, b){
-  return Number(a) * Number(b)
+function multiply(a, b) {
+  return Math.round(Number(a) * Number(b) * 100000000) / 100000000
 }
 
-function divide (a, b) {
-  if (Number(b)==0)
-    return 'error'
-  return Math.round ((Number(a) / Number(b)) * 100000000) / 100000000
+function divide(a, b) {
+  if (Number(b) == 0) return 'error'
+  return Math.round((Number(a) / Number(b)) * 100000000) / 100000000
 }
 
-function percent(a, b=1) {
-      console.log('a=', a, 'b=', b, '!b=', !!(!b))
-      return Number(a) * Number(b) /100 
+function percent(a, b = 1) {
+  console.log('a=', a, 'b=', b, '!b=', !!!b)
+  return Math.round(((Number(a) * Number(b)) / 100) * 100000000) / 100000000
 }
 
+function dotCheck(num) {
+  if (num.includes('.')) return ''
+  if (num == '') return '0.'
+  return '.'
+}
+
+function plusMinusCheck(num) {
+  if (num.includes('-')) {
+    num = num.replace('-', '')
+    return num
+  }
+  num = '-' + num
+  return num
+}
 
 const display = document.querySelector('.display')
 
@@ -41,7 +54,7 @@ btns.forEach((btn) => {
     } else {
       b += number
       display.innerText = b
-    } 
+    }
     console.log('a=', a, 'b=', b, 'o=', operator)
   })
 })
@@ -51,6 +64,7 @@ operators.forEach((oper) => {
   oper.addEventListener('click', (e) => {
     operator = e.target.innerText
     display.innerText = operator
+    b = ''
     console.log('a=', a, 'b=', b, 'o=', operator)
   })
 })
@@ -64,8 +78,27 @@ ac.addEventListener('click', () => {
 })
 
 const dot = document.querySelector('.dot')
-dot.addEventListener('click', ()=>{
-  
+dot.addEventListener('click', () => {
+  if (!operator) {
+    a += dotCheck(a)
+    display.innerText = a
+  } else {
+    b += dotCheck(b)
+    display.innerText = b
+  }
+  console.log('a=', a, 'b=', b, 'o=', operator)
+})
+
+const plusMinus = document.querySelector('.PlusMinus')
+plusMinus.addEventListener('click', () => {
+  if (!operator) {
+    a = plusMinusCheck(a)
+    display.innerText = a
+  } else {
+    b = plusMinusCheck(b)
+    display.innerText = b
+  }
+  console.log('a=', a, 'b=', b, 'o=', operator)
 })
 
 const equal = document.querySelector('.equal')
@@ -73,33 +106,35 @@ equal.addEventListener('click', () => {
   switch (operator) {
     case '+':
       b != ''
-      ? (result = String(add(a, b)), console.log(result))
-      : (result = String(add (a, a)), console.log(result))
+        ? ((result = String(add(a, b))), console.log(result))
+        : ((result = String(add(a, a))), console.log(result))
       break
     case '-':
       b != ''
-      ? (result = String(subtract(a, b)), console.log(result))
-      : (result = String(subtract (a, a)), console.log(result))
+        ? ((result = String(subtract(a, b))), console.log(result))
+        : ((result = String(subtract(a, a))), console.log(result))
       break
     case '*':
       b != ''
-      ? (result = String(multiply(a, b)), console.log(result))
-      : (result = String(multiply (a, a)), console.log(result))
+        ? ((result = String(multiply(a, b))), console.log(result))
+        : ((result = String(multiply(a, a))), console.log(result))
       break
     case '/':
       b != ''
-      ? (result = String(divide(a, b)), console.log(result))
-      : (result = String(divide (a, a)), console.log(result))
+        ? ((result = String(divide(a, b))), console.log(result))
+        : ((result = String(divide(a, a))), console.log(result))
       break
     case '%':
       b != ''
-      ? (result = String(percent(a, b)), console.log(result))
-      : (result = String(percent (a)), console.log(result))
+        ? ((result = String(percent(a, b))), console.log(result))
+        : ((result = String(percent(a))), console.log(result))
       break
   }
+  if (result.length > 11) {
+    result = 'e' + result.slice(0, 10)
+  }
+
   display.innerText = result
   a = result
-  console.log('a=', a, 'b=', b, 'o=', operator)
+  console.log('a=', a, 'b=', b, 'o=', operator, 'res=', result)
 })
-
-

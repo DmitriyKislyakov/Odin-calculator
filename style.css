@@ -62,7 +62,8 @@ body {
   filter: brightness(50%);
 }
 
-.button.Operator, .button.equal {
+.button.Operator,
+.button.equal {
   background-color: lightsalmon;
 }
 
